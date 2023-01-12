@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+
+  <body class="d-flex flex-column vh-100">
+    
+    <header>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+    <div class="container">
+      <span><%= link_to 'Bookers', root_path, class:"navbar-brand nav-link p-3 text-light" %></span>
+    <div class="navbar-nav ml-auto">
+    <% if user_signed_in? %>
+        <%= link_to user_path(current_user.id), class:"nav-link p-3 text-light" do %>
+        <i class="fas fa-home"></i>
+        Home
+        <% end %>
+        <%= link_to users_path, class:"nav-link p-3 text-light" do %>
+        <i class="fas fa-users"></i>
+        Users
+        <% end %>
+        <%= link_to books_path, class:"nav-link p-3 text-light" do %>
+        <i class="fas fa-book-open"></i>
+        Books
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :delete, class:"nav-link p-3 text-light" do %>
+        <i class="fas fa-sign-out-alt"></i>
+        logout
+        <% end %>
+        
+    <% else %>
+      <%= link_to root_path, class:"nav-link p-3 text-light color-white" do %>
+      <i class="fas fa-home"></i>
+      Home
+      <% end %>
+      <%= link_to about_path, class:"nav-link p-3 text-light color-white" do %>
+      <i class="fas fa-link"></i>
+      About
+      <% end %>
+      <%= link_to new_user_registration_path, class:"nav-link p-3 text-light color-white" do %>
+      <i class="fas fa-user-plus"></i>
+      sign up
+      <% end %>
+      <%= link_to new_user_session_path, class:"nav-link p-3 text-light color-white" do %>
+      <i class="fas fa-sign-in-alt"></i>
+      login
+      <% end %>
+    <% end %>
+    </div>
+    </div>
+    </nav>
+    </header>
+  
+  <main>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </main>
+    
+  <footer class="bg-white text-black pt-5 pb-4">
+    <div class="container">
+      <p class="mx-auto text-center">CopyRight Infratop.inc</p>
+    </div>
+  </footer>
+  </body>
+</html>
